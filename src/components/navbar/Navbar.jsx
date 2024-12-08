@@ -1,10 +1,24 @@
-import React from 'react';
-
+import React, { useEffect, useState } from "react";
 import img1 from "../images/Ad360_Header.svg";
 function Navbar() {
+  const [stick, setStick] = useState(false);
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 0) {
+        setStick(true);
+      } else {
+        setStick(false);
+      }
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
+
   return (
     <div>
-      <div id="appNavbar" className="sticky">
+      <div id="appNavbar" className={`${stick ? "sticky" : ""}`}>
         <a href="/">
           <img src={img1} alt="logo-img" className="appNavbar__logo" />
         </a>
@@ -28,17 +42,53 @@ function Navbar() {
           ssr=""
           uid="bID3X"
         ></astro-island>
-        
+
         <ul className="appNavbar__navLinks">
-          <li><a href="#home" className="inter appNavbar__navLink">Home</a></li>
-          <li><a href="#about" className="inter appNavbar__navLink">About</a></li>
-          <li><a href="#pricing" className="inter appNavbar__navLink" data-astro-reload="" data-astro-transition="back" data-astro-transition-scope="astro-gjjrnpmp-1">Pricing</a></li>
-          <li><a href="#faq" className="inter appNavbar__navLink">FAQ</a></li>
-          <li><a href="https://blog.ad360.ai/" className="inter appNavbar__navLink" rel="noopener noreferrer" target="_blank">Blogs</a></li>
+          <li>
+            <a href="#home" className="inter appNavbar__navLink">
+              Home
+            </a>
+          </li>
+          <li>
+            <a href="#about" className="inter appNavbar__navLink">
+              About
+            </a>
+          </li>
+          <li>
+            <a
+              href="#pricing"
+              className="inter appNavbar__navLink"
+              data-astro-reload=""
+              data-astro-transition="back"
+              data-astro-transition-scope="astro-gjjrnpmp-1"
+            >
+              Pricing
+            </a>
+          </li>
+          <li>
+            <a href="#faq" className="inter appNavbar__navLink">
+              FAQ
+            </a>
+          </li>
+          <li>
+            <a
+              href="https://blog.ad360.ai/"
+              className="inter appNavbar__navLink"
+              rel="noopener noreferrer"
+              target="_blank"
+            >
+              Blogs
+            </a>
+          </li>
         </ul>
-        
+
         <div className="appNavbar__btn">
-          <a href="/book-a-demo" className="dflexr justifycenter bookademo inter">Book a Demo</a>
+          <a
+            href="https://ad360.ai/book-a-demo/"
+            className="dflexr justifycenter bookademo inter"
+          >
+            Book a Demo
+          </a>
         </div>
       </div>
     </div>
