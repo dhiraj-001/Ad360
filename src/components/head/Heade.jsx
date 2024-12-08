@@ -1,9 +1,9 @@
 // src/Heade.js
 import React from 'react';
-import img1 from "../../images/update_meta.svg";
-import img2 from "../../images/update_snapchat.svg";
-import img3 from "../../images/update_google_partner.svg";
-import img4 from "../../images/Ad360MainSectionImg.webp";
+import img1 from "../images/update_meta.svg";
+import img2 from "../images/update_snapchat.svg";
+import img3 from "../images/update_google_partner.svg";
+import img4 from "../images/Ad360MainSectionImg.webp";
 function Heade() {
   return (
     <div className="dflexr main__section">
