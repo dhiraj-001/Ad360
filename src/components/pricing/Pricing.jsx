@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
-import gsap from 'gsap';
-import { useGSAP } from '@gsap/react';
-import { useRef } from 'react';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
+// import gsap from 'gsap';
+// import { useGSAP } from '@gsap/react';
+// import { useRef } from 'react';
+// import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 
 function Pricing() {
@@ -48,7 +48,7 @@ function Pricing() {
           step="1"
         />
 
-        <div className="slider-track"></div>
+        <div className="slider-track" style={{ background: `linear-gradient(to right, blue ${value * 20}%, #e0e0e0 ${value * 20}%)` }}></div>
       </div>
 
       <div className="budget__plansCards">

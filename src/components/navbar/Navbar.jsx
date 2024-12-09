@@ -1,7 +1,11 @@
 import React, { useEffect, useState } from "react";
 import img1 from "../images/Ad360_Header.svg";
+import Hamburger from 'hamburger-react'
 function Navbar() {
   const [stick, setStick] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [isOpen, setOpen] = useState(false);
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY > 0) {
@@ -10,11 +14,26 @@ function Navbar() {
         setStick(false);
       }
     };
-    window.addEventListener('scroll', handleScroll);
+
+    const handleResize = () => {
+      setIsMobile(window.innerWidth > 768);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("resize", handleResize);
+    
+    // Initial check
+    handleResize();
+
     return () => {
-      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("resize", handleResize);
     };
   }, []);
+
+  const toggleMenu = () => {
+    setMenuOpen(!menuOpen);
+  };
 
   return (
     <div>
@@ -43,9 +62,9 @@ function Navbar() {
           uid="bID3X"
         ></astro-island>
 
-        <ul className="appNavbar__navLinks">
+        <ul className={`appNavbar__navLinks ${menuOpen ? "w-full h-[100vh] top-0 motion__ul appNavbar__navLinksResponsive bg-slate-50 " : ""}`}>
           <li>
-            <a href="#home" className="inter appNavbar__navLink">
+            <a href="#home" className="inter appNavbar__navLink designnn">
               Home
             </a>
           </li>
@@ -80,8 +99,24 @@ function Navbar() {
               Blogs
             </a>
           </li>
+          <div className={`appNavbar__btn1 flex justify-center ${isMobile ? 'hidden' : ''}`}>
+          <a
+            href="https://ad360.ai/book-a-demo/"
+            className="dflexr justifycenter bookademo inter "
+          >
+            Book a Demo
+          </a>
+        </div>
         </ul>
-
+        {!isMobile && (
+          <button
+            className="motion__button dflexr justifycenter"
+            title="humburger-menu-button"
+            onClick={toggleMenu}
+          >
+           <Hamburger toggled={isOpen} toggle={setOpen}  />
+          </button>
+        )}
         <div className="appNavbar__btn">
           <a
             href="https://ad360.ai/book-a-demo/"
