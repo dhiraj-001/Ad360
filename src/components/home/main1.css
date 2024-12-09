@@ -100,6 +100,10 @@
   display: none
 }
 
+.motion-ul12{
+  top: 75px !important;
+}
+
 .motion__background {
   position: absolute;
   top: 0;
@@ -120,8 +124,8 @@
   position: absolute;
   top: 15px;
   left: 15px;
-  width: 51px;
-  height: 51px;
+  width: 48px !important;
+  height: 48px !important;  
   border-radius: 50%;
   background: #149efc
 }

@@ -62,7 +62,7 @@ function Navbar() {
           uid="bID3X"
         ></astro-island>
 
-        <ul className={`appNavbar__navLinks ${menuOpen ? "w-full h-[100vh] top-0 motion__ul appNavbar__navLinksResponsive bg-slate-50 " : ""}`}>
+        <ul className={`appNavbar__navLinks ${menuOpen ? "w-full h-[100vh] top-0 motion__ul motion-ul12 appNavbar__navLinksResponsive bg-slate-50 " : ""}`}>
           <li>
             <a href="#home" className="inter appNavbar__navLink designnn">
               Home
