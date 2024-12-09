@@ -1,23 +1,17 @@
 import React, { useEffect, useState } from "react";
-// import gsap from 'gsap';
-// import { useGSAP } from '@gsap/react';
-// import { useRef } from 'react';
-// import { ScrollTrigger } from 'gsap/ScrollTrigger';
-
 
 function Pricing() {
   const [value, setValue] = useState(1); // Default value
-  const[isHid, setIsHid] = useState(false); 
+  const [isHid, setIsHid] = useState(false); 
+
   const handleChange = (event) => {
-    setValue(event.target.value);
+    setValue(Number(event.target.value));
   };
 
   useEffect(() => {
-    setIsHid(value == 5); // Set hidden state based on value
+    setIsHid(value === 5); // Set hidden state based on value
   }, [value]);
 
-
-  
   return (
     <div id="pricing">
       <img
@@ -33,9 +27,15 @@ function Pricing() {
       <span className="poppins budget__heading">
         Pick the right plan for your ad budget
       </span>
-      <h2 className="poppins budget__subHeading">
-        My monthly ad spend is up to <span>${value*4500}</span>
-      </h2>
+      {isHid ? (
+        <h2 className="poppins budget__subHeading">
+          My monthly ad spend is above <span>$50001</span>
+        </h2>
+      ) : (
+        <h2 className="poppins budget__subHeading">
+          My monthly ad spend is up to <span>${value * 4500}</span>
+        </h2>
+      )}
 
       <div className="slider-container1">
         <input
@@ -47,16 +47,21 @@ function Pricing() {
           className="slider1"
           step="1"
         />
-
-        <div className="slider-track" style={{ background: `linear-gradient(to right, blue ${value * 20}%, #e0e0e0 ${value * 20}%)` }}></div>
+        <div
+          className="slider-track"
+          style={{ background: `linear-gradient(to right, blue ${value * 20}%, #e0e0e0 ${value * 20}%)` }}
+        ></div>
+        <div className="dotdiv bg-white h-2 w-2 round"></div>
+        <div className="dotdiv bg-white h-2 w-2 round"></div>
+        <div className="dotdiv bg-white h-2 w-2 round"></div>
+        <div className="dotdiv bg-white h-2 w-2 round"></div>
       </div>
 
       <div className="budget__plansCards">
         <div
           id="plansCard"
-          className={`dflexc justifycenter planCard planCardSelected ${isHid ? 'hidden' : ''}`}    
-          
-          >
+          className={`dflexc justifycenter planCard planCardSelected ${isHid ? 'hidden' : ''}`}
+        >
           <h3 className="plansCard__heading poppins">Plan</h3>
           <h2 className="plansCard__price poppins">
             $199<span>/month</span>
@@ -86,9 +91,7 @@ function Pricing() {
           <h3 className="plansCard__heading poppins">Higher ad spends?</h3>
           <h2 className="plansCard__price poppins">Custom Price</h2>
           <p className="plansCard__overages poppins">
-            <span>
-              <br />
-            </span>
+            <span><br /></span>
           </p>
           <a
             href="https://ad360.ai/book-a-demo/"
@@ -100,7 +103,7 @@ function Pricing() {
           </a>
           <p className="plansCard__excludingGst inter">*Excluding GST</p>
           <img
-            className={`plansCard__purpleTickCircle ${!isHid ? 'hidden' : '' }`}
+            className={`plansCard__purpleTickCircle ${!isHid ? 'hidden' : ''}`}
             src="https://drbgg29kvmub6.cloudfront.net/assets/ad360/purple-tick-circle.svg"
             alt="purple-tick-circle"
           />

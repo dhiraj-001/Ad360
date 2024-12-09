@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from "react";
 import img1 from "../images/Ad360_Header.svg";
-import Hamburger from 'hamburger-react'
+import Hamburger from "hamburger-react";
+
+import "./navbar.css";
 function Navbar() {
   const [stick, setStick] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
-  const [isOpen, setOpen] = useState(false);
+ 
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY > 0) {
@@ -21,7 +23,7 @@ function Navbar() {
 
     window.addEventListener("scroll", handleScroll);
     window.addEventListener("resize", handleResize);
-    
+
     // Initial check
     handleResize();
 
@@ -62,7 +64,13 @@ function Navbar() {
           uid="bID3X"
         ></astro-island>
 
-        <ul className={`appNavbar__navLinks ${menuOpen ? "w-full h-[100vh] top-0 motion__ul motion-ul12 appNavbar__navLinksResponsive bg-slate-50 " : ""}`}>
+        <ul
+          className={`appNavbar__navLinks anim-nav ${
+            menuOpen
+              ? "w-full h-[100vh] top-0 motion__ul motion-ul12 appNavbar__navLinksResponsive  bg-slate-50 "
+              : ""
+          }`}
+        >
           <li>
             <a href="#home" className="inter appNavbar__navLink">
               Home
@@ -99,14 +107,18 @@ function Navbar() {
               Blogs
             </a>
           </li>
-          <div className={`appNavbar__btn1 flex justify-center ${isMobile ? 'hidden' : ''}`}>
-          <a
-            href="https://ad360.ai/book-a-demo/"
-            className="dflexr justifycenter bookademo inter "
+          <div
+            className={`appNavbar__btn1 flex justify-center ${
+              isMobile ? "hidden" : ""
+            }`}
           >
-            Book a Demo
-          </a>
-        </div>
+            <a
+              href="https://ad360.ai/book-a-demo/"
+              className="dflexr justifycenter bookademo inter "
+            >
+              Book a Demo
+            </a>
+          </div>
         </ul>
         {!isMobile && (
           <button
@@ -114,7 +126,7 @@ function Navbar() {
             title="humburger-menu-button"
             onClick={toggleMenu}
           >
-           <Hamburger toggled={isOpen} toggle={setOpen}  />
+            <Menu></Menu>
           </button>
         )}
         <div className="appNavbar__btn">
@@ -129,5 +141,20 @@ function Navbar() {
     </div>
   );
 }
+
+export function Menu() {
+  const [isOpen, setOpen] = useState(false);
+  const handleClick = () => setOpen(!isOpen);
+  return (
+    <div className="menubox" onClick={handleClick}>
+      <span className={`menubar ${isOpen ? 'anim1' : 'anim21'}`} id="bars1"></span>
+      <span className={`menubar ${isOpen ? 'anim2' : ''}`} id="bars2"></span>
+      <span className={`menubar ${isOpen ? 'anim3' : 'anim22'}`} id="bars3"></span>
+    </div>
+  );
+}
+
+
+
 
 export default Navbar;
