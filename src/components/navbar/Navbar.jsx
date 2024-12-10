@@ -5,9 +5,19 @@ import Hamburger from "hamburger-react";
 import "./navbar.css";
 function Navbar() {
   const [stick, setStick] = useState(false);
-  const [isMobile, setIsMobile] = useState(false);
+  const [isMobile, setIsMobile] =useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
- 
+  const [isOpen, setOpen] = useState(false);
+  const handleClick = () => {
+    isMobile ?
+    
+    setMenuOpen(!menuOpen) 
+    :
+    setMenuOpen(menuOpen);
+    ;
+  }
+  console.log(isMobile)
+  
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY > 0) {
@@ -18,7 +28,7 @@ function Navbar() {
     };
 
     const handleResize = () => {
-      setIsMobile(window.innerWidth > 768);
+      setIsMobile(window.innerWidth <= 768);
     };
 
     window.addEventListener("scroll", handleScroll);
@@ -35,6 +45,7 @@ function Navbar() {
 
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
+
   };
 
   return (
@@ -72,12 +83,12 @@ function Navbar() {
           }`}
         >
           <li>
-            <a href="#home" className="inter appNavbar__navLink">
+            <a href="#home" className="inter appNavbar__navLink" onClick={handleClick}>
               Home
             </a>
           </li>
           <li>
-            <a href="#about" className="inter appNavbar__navLink">
+            <a href="#about" className="inter appNavbar__navLink" onClick={handleClick}>
               About
             </a>
           </li>
@@ -88,12 +99,13 @@ function Navbar() {
               data-astro-reload=""
               data-astro-transition="back"
               data-astro-transition-scope="astro-gjjrnpmp-1"
+              onClick={handleClick}
             >
               Pricing
             </a>
           </li>
           <li>
-            <a href="#faq" className="inter appNavbar__navLink">
+            <a href="#faq" className="inter appNavbar__navLink"  onClick={handleClick}>
               FAQ
             </a>
           </li>
@@ -103,13 +115,14 @@ function Navbar() {
               className="inter appNavbar__navLink"
               rel="noopener noreferrer"
               target="_blank"
+              onClick={handleClick}
             >
               Blogs
             </a>
           </li>
           <div
-            className={`appNavbar__btn1 flex justify-center ${
-              isMobile ? "hidden" : ""
+            className={`appNavbar__btn1 flex justify-center w-230px ${
+              isMobile ? "" : "hidden"
             }`}
           >
             <a
@@ -120,9 +133,9 @@ function Navbar() {
             </a>
           </div>
         </ul>
-        {!isMobile && (
+        {isMobile && (
           <button
-            className="motion__button dflexr justifycenter"
+            className="motion__button dflexr justifycenter "
             title="humburger-menu-button"
             onClick={toggleMenu}
           >
@@ -142,9 +155,8 @@ function Navbar() {
   );
 }
 
-export function Menu() {
-  const [isOpen, setOpen] = useState(false);
-  const handleClick = () => setOpen(!isOpen);
+export function Menu({handleClick, isOpen, setOpen}) {
+ 
   return (
     <div className="menubox" onClick={handleClick}>
       <span className={`menubar ${isOpen ? 'anim1' : 'anim21'}`} id="bars1"></span>
