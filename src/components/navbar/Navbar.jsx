@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import img1 from "../images/Ad360_Header.svg";
-import Hamburger from "hamburger-react";
+
 
 import "./navbar.css";
 function Navbar() {
@@ -9,14 +9,16 @@ function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [isOpen, setOpen] = useState(false);
   const handleClick = () => {
-    isMobile ?
-    
-    setMenuOpen(!menuOpen) 
-    :
+    if(isMobile ){
+    setOpen(!isOpen)
+    setMenuOpen(!menuOpen)
+  } else{
+  
     setMenuOpen(menuOpen);
-    ;
   }
-  console.log(isMobile)
+  }
+console.log(isOpen)
+console.log(isMobile)
   
   useEffect(() => {
     const handleScroll = () => {
@@ -139,7 +141,7 @@ function Navbar() {
             title="humburger-menu-button"
             onClick={toggleMenu}
           >
-            <Menu></Menu>
+            <Menu handleClick={handleClick} isOpen={isOpen} setOpen={setOpen}></Menu>
           </button>
         )}
         <div className="appNavbar__btn">
